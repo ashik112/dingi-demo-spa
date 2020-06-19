@@ -1,8 +1,6 @@
 import authActionTypes from './authActionTypes';
 import historyRoutes from '../../../routing/historyRoutes';
 import history from '../../../utils/history';
-import { store} from '../../store';
-import storageService from '../../../services/storageService';
 import axios from 'axios';
 import {apiRoutes} from '../../../routing/apiRoutes';
 
