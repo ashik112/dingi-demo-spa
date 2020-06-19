@@ -1,10 +1,12 @@
 import React from 'react';
 import {Form, Button, Container, Row, Col, Card, Image} from 'react-bootstrap';
 import { Formik, Field } from 'formik';
+import { connect } from 'react-redux';
 import logo from '../../assets/dingi.png';
 import './LoginPage.scss';
+import authActions from '../../redux/reducers/Authentication/authActions';
 
-const LoginPage = () => (
+const LoginPage = ({ onLogIn }) => (
   <Container style={{ height: '100vh' }}>
     <div className="background-image" />
     <Row style={{ blur: '0 !important' }} className="h-100 justify-content-center align-items-center content">
@@ -22,7 +24,7 @@ const LoginPage = () => (
                 password: '',
               }}
               onSubmit={(values) => {
-                console.log(values);
+                onLogIn({ ...values });
               }}
             >
               {({ handleSubmit, isSubmitting, getFieldProps, handleChange, handleBlur, values }) => {
@@ -60,4 +62,19 @@ const LoginPage = () => (
   </Container>
 );
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+  const { authReducer } = state;
+  return {
+    authReducer,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onLogIn: (credentials) => dispatch(
+    authActions.login(
+      credentials,
+    ),
+  ),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

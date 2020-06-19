@@ -2,8 +2,9 @@ import authActionTypes from './authActionTypes';
 import historyRoutes from '../../../routing/historyRoutes';
 import history from '../../../utils/history';
 import { store} from '../../store';
-import authenticationService from '../../../services/authenticationService';
 import storageService from '../../../services/storageService';
+import axios from 'axios';
+import {apiRoutes} from '../../../routing/apiRoutes';
 
 const login = (credentials) => {
   function start(params) {
@@ -20,10 +21,11 @@ const login = (credentials) => {
 
   return async (dispatch) => {
     const { username, password } = credentials;
+    console.log(credentials);
     await dispatch(start({ username, password }));
-    await authenticationService.login(credentials)
+    await axios.post(apiRoutes.login, { username, password })
       .then(async (res) => {
-        if (res.data && res.data.user) {
+        if (res.data && res.data.user_details) {
           await dispatch(success(res.data));
           history.push(historyRoutes.dashboard.base);
         }
@@ -43,8 +45,13 @@ const stopLoading = () => (dispatch) => {
  * @returns {function(...[*]=)}
  */
 const logout = () => (dispatch) => {
-  storageService.remove('callbackLink');
-  authenticationService.logout(dispatch);
+  try {
+    dispatch({ type: authActionTypes.LOGOUT });
+    dispatch({ type: 'RESET_APP' });
+    history.push(historyRoutes.login);
+  } catch (e) {
+    // handle error
+  }
 };
 
 const authActions = {
