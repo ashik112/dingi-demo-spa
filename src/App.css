@@ -43,3 +43,16 @@
 .sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL {
   min-width: 140px !important;
 }
+
+.table-bordered, .table-bordered td, .table-bordered th {
+  border: 1px solid #ffc107 !important;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: rgba(255, 193, 7, 0.16) !important;
+}
+
+th {
+  background-color: rgb(255, 193, 7) !important;
+  color: white;
+}

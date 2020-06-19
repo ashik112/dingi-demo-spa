@@ -28,6 +28,7 @@ class ItemsPage extends Component {
             size="sm"
             bordered
             hover
+            striped
           >
             <thead>
             <tr>
