@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { store, persistor } from './redux/store';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App store={store} persistor={persistor} />
   </React.StrictMode>,
   document.getElementById('root'),
 );
