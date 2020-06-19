@@ -59,6 +59,8 @@ class Layout extends Component {
                 marginTop: 55,
               }}
               onSelect={(selected) => {
+                const { location } = this.props;
+                console.log(location, selected);
                 const to = '/' + selected;
                 if (location.pathname !== to) {
                   history.push(to);
@@ -67,7 +69,7 @@ class Layout extends Component {
               onToggle={this.onToggle}
             >
               <SideNav.Toggle className="text-dark" />
-              <SideNav.Nav defaultSelected="dashboard/sales">
+              <SideNav.Nav defaultSelected={location.pathname.includes('customers') ? 'dashboard/customers' : 'dashboard/sales'}>
                 <NavItem eventKey="dashboard/sales">
                   <NavIcon>
                     <GraphUp className="text-dark" style={{ fontSize: '1.75em' }} />
