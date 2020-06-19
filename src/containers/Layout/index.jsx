@@ -21,6 +21,7 @@ const Main = styled.main`
     transition: all .15s;
     padding: 0;
     margin-left: ${props => (props.expanded ? 140 : ((props.side && 64) || 0))}px;
+    margin-top: 55px;
 `;
 
 class Layout extends Component {
@@ -41,8 +42,7 @@ class Layout extends Component {
     const { expanded } = this.state;
     return(
       <>
-        {/**/}
-        <Navbar style={{ height: 55 }} bg="warning" variant="light">
+        <Navbar fixed="top" style={{ height: 55, opacity: 0.8 }} bg="warning" variant="light">
           <Navbar.Brand><Image width={20} src={logo} fluid/> Dingi</Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link onClick={() => !showSideNav && history.push(historyRoutes.dashboard.sales)}>Dashboard</Nav.Link>
@@ -61,7 +61,6 @@ class Layout extends Component {
               }}
               onSelect={(selected) => {
                 const { location } = this.props;
-                console.log(location, selected);
                 const to = '/' + selected;
                 if (location.pathname !== to) {
                   history.push(to);

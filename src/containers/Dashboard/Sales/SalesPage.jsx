@@ -14,7 +14,6 @@ class SalesPage extends Component {
   }
 
   componentDidMount() {
-    // let labels = [];
     let dates = {};
     let products = {};
     const barDatasets = [];
@@ -38,10 +37,10 @@ class SalesPage extends Component {
          }
        }
      });
-     const labels = Object.keys(dates).map((key) => key).sort((a,b) => new Date(a) - new Date(b));
+     const barLabels = Object.keys(dates).map((key) => key).sort((a,b) => new Date(a) - new Date(b));
      Object.keys(products).forEach((product) => {
        const data = [];
-       labels.forEach((date) => {
+       barLabels.forEach((date) => {
          if(dates[date][product]) {
            data.push(dates[date][product]);
            products[product] += dates[date][product];
@@ -54,12 +53,9 @@ class SalesPage extends Component {
          data,
        });
      });
-     console.log(products);
-     console.log(Object.keys(products));
-     console.log(Object.keys(products).map((key) => products[key]));
      this.setState({
        barData: {
-         labels,
+         labels: barLabels,
          datasets: barDatasets,
        },
        pieData: {
