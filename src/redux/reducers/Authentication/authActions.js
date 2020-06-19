@@ -3,6 +3,7 @@ import historyRoutes from '../../../routing/historyRoutes';
 import history from '../../../utils/history';
 import axios from 'axios';
 import {apiRoutes} from '../../../routing/apiRoutes';
+import {toast} from 'react-toastify';
 
 const login = (credentials) => {
   function start(params) {
@@ -29,6 +30,13 @@ const login = (credentials) => {
         }
       })
       .catch((error) => {
+        console.log(error.response);
+        const message = error.response.data.detail;
+        if(message) {
+          toast.error("Wrong Username / Password!", {
+            position: toast.POSITION.BOTTOM_CENTER,
+          });
+        }
         dispatch(failure(error));
       });
   };

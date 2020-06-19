@@ -6,6 +6,7 @@ import Routers from './routing';
 import history from './utils/history';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
   render() {
