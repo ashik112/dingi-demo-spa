@@ -20,17 +20,15 @@ const login = (credentials) => {
 
   return async (dispatch) => {
     const { username, password } = credentials;
-    console.log(credentials);
     await dispatch(start({ username, password }));
     await axios.post(apiRoutes.login, { username, password })
       .then(async (res) => {
         if (res.data && res.data.user_details) {
           await dispatch(success(res.data));
-          history.push(historyRoutes.dashboard.base);
+          history.push(historyRoutes.dashboard.sales);
         }
       })
       .catch((error) => {
-        console.log(error.response);
         const message = error.response.data.detail;
         if(message) {
           toast.error("Wrong Username / Password!", {

@@ -10,6 +10,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import UnauthenticatedRouting from './routing/UnauthenticatedRouting';
 import LoginPage from './containers/Login/LoginPage';
 import Layout from './containers/Layout';
+import {ToastContainer} from 'react-toastify';
 
 const App = ({store, persistor}) => {
   return (
@@ -24,6 +25,7 @@ const App = ({store, persistor}) => {
           </Switch>
         </Router>
       </PersistGate>
+      <ToastContainer />
     </Provider>
   );
 }

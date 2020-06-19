@@ -1,7 +1,5 @@
-import { showAlert, showNotification} from '../services/notificationService';
 import { store} from '../redux/store';
 import authActionTypes from '../redux/reducers/Authentication/authActionTypes';
-// import storageService from '../services/storageService';
 import history from './history';
 import historyRoutes from '../routing/historyRoutes';
 import { sleep } from './sleep';
@@ -37,20 +35,13 @@ const handleGlobally = (error) => {
       }
       break;
     case errorType.unknown:
-      showNotification('error', error.statusText, error.message);
+      // showNotification('error', error.statusText, error.message);
       break;
     case errorType.single:
-      showAlert('error', error.message);
-      break;
-    case errorType.form:
-      Object.values(error.errors).forEach((value, index) => {
-        value.forEach((message) => {
-          showNotification('warning', `Line ${index + 1} : ${message}`, '', 10, 'bottomRight');
-        });
-      });
+      // showAlert('error', error.message);
       break;
     default:
-      showNotification('error', 'Something went wrong!', 'Server was unable to process the request.');
+      // showNotification('error', 'Something went wrong!', 'Server was unable to process the request.');
       break;
   }
 };

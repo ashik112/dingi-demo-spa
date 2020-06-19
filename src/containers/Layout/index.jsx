@@ -5,7 +5,6 @@ import {Navbar, Nav, Button, Form, Image} from 'react-bootstrap';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import authActions from '../../redux/reducers/Authentication/authActions';
 import AuthenticatedRouting from '../../routing/AuthenticatedRouting';
-import Dashboard from '../Dashboard';
 import logo from '../../assets/dingi.png';
 import Sales from '../Dashboard/Sales';
 import Customers from '../Dashboard/Customers';
@@ -38,7 +37,6 @@ class Layout extends Component {
   render() {
     const { logOut, location } = this.props;
     const showSideNav = location.pathname.includes('dashboard') || location.pathname.includes('sales') || location.pathname.includes('customers');
-    console.log(location);
     const { expanded } = this.state;
     return(
       <>
@@ -46,7 +44,7 @@ class Layout extends Component {
         <Navbar style={{ height: 55 }} bg="warning" variant="light">
           <Navbar.Brand><Image width={20} src={logo} fluid/> Dingi</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link onClick={() => history.push(historyRoutes.dashboard.sales)}>Dashboard</Nav.Link>
+            <Nav.Link onClick={() => !showSideNav && history.push(historyRoutes.dashboard.sales)}>Dashboard</Nav.Link>
             <Nav.Link onClick={() => history.push(historyRoutes.items)}>Items</Nav.Link>
           </Nav>
           <Form inline>
