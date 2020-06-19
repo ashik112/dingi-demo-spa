@@ -23,7 +23,7 @@ function authHeaderProvider() {
     const { authReducer: { token } } = store.getState();
     if (token) {
       return {
-        Authorization: `Bearer ${token}`,
+        Authorization: `JWT ${token}`,
       };
     }
     return {};

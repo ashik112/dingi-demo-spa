@@ -12,6 +12,8 @@ import Customers from '../Dashboard/Customers';
 import history from '../../utils/history';
 import styled from 'styled-components';
 import { GraphUp, PeopleFill } from 'react-bootstrap-icons';
+import ItemsPage from '../Items/ItemsPage';
+import historyRoutes from '../../routing/historyRoutes';
 
 const Main = styled.main`
     position: relative;
@@ -42,10 +44,10 @@ class Layout extends Component {
       <>
         {/**/}
         <Navbar style={{ height: 55 }} bg="warning" variant="light">
-          <Navbar.Brand href="/dashboard/sales"><Image width={20} src={logo} fluid/> Dingi</Navbar.Brand>
+          <Navbar.Brand><Image width={20} src={logo} fluid/> Dingi</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="/dashboard/sales">Dashboard</Nav.Link>
-            <Nav.Link href="/items">Items</Nav.Link>
+            <Nav.Link onClick={() => history.push(historyRoutes.dashboard.sales)}>Dashboard</Nav.Link>
+            <Nav.Link onClick={() => history.push(historyRoutes.items)}>Items</Nav.Link>
           </Nav>
           <Form inline>
             <Button onClick={logOut} variant="info">Log Out</Button>
@@ -94,7 +96,7 @@ class Layout extends Component {
             unCheckedChildren="Light"
             location={location}
           >
-            <AuthenticatedRouting component={Dashboard} path="/dashboard" exact />
+            <AuthenticatedRouting component={ItemsPage} path="/items" exact />
             <AuthenticatedRouting component={Sales} path="/dashboard/sales" exact />
             <AuthenticatedRouting component={Customers} path="/dashboard/customers" exact />
           </Switch>

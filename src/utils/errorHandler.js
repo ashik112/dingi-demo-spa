@@ -5,6 +5,7 @@ import authActionTypes from '../redux/reducers/Authentication/authActionTypes';
 import history from './history';
 import historyRoutes from '../routing/historyRoutes';
 import { sleep } from './sleep';
+import {toast} from 'react-toastify';
 
 export const errorType = {
   single: 1,
@@ -16,7 +17,9 @@ export const errorType = {
 const handleGlobally = (error) => {
   switch (error.type) {
     case errorType.authentication:
-      showNotification('error', error.statusText, error.message);
+      toast.error("Authentication Failed", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       if (error.message !== 'Access Denied') {
         sleep(500).then(() => {
           try {
