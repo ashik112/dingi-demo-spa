@@ -4,7 +4,7 @@ import {apiRoutes} from '../../../routing/apiRoutes';
 import {Card, Col, Row} from 'react-bootstrap';
 import { Bar, Pie } from 'react-chartjs-2';
 import moment from 'moment';
-class Sales extends Component {
+class SalesPage extends Component {
   constructor(props) {
     super(props);
     this.state= {
@@ -107,4 +107,4 @@ class Sales extends Component {
   }
 }
 
-export default Sales;
+export default SalesPage;

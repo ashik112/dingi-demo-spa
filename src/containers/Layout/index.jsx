@@ -6,13 +6,13 @@ import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import authActions from '../../redux/reducers/Authentication/authActions';
 import AuthenticatedRouting from '../../routing/AuthenticatedRouting';
 import logo from '../../assets/dingi.png';
-import Sales from '../Dashboard/Sales';
-import Customers from '../Dashboard/Customers';
 import history from '../../utils/history';
 import styled from 'styled-components';
 import { GraphUp, PeopleFill } from 'react-bootstrap-icons';
 import ItemsPage from '../Items/ItemsPage';
 import historyRoutes from '../../routing/historyRoutes';
+import SalesPage from '../Dashboard/Sales/SalesPage';
+import CustomersPage from '../Dashboard/Customers/CustomersPage';
 
 const Main = styled.main`
     position: relative;
@@ -98,8 +98,8 @@ class Layout extends Component {
             location={location}
           >
             <AuthenticatedRouting component={ItemsPage} path="/items" exact />
-            <AuthenticatedRouting component={Sales} path="/dashboard/sales" exact />
-            <AuthenticatedRouting component={Customers} path="/dashboard/customers" exact />
+            <AuthenticatedRouting component={SalesPage} path="/dashboard/sales" exact />
+            <AuthenticatedRouting component={CustomersPage} path="/dashboard/customers" exact />
           </Switch>
         </Main>
       </>
