@@ -16,11 +16,10 @@ import historyRoutes from '../../routing/historyRoutes';
 
 const Main = styled.main`
     position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: hidden;
+    overflow-x: ${props => ((props.side && 'hidden') || 'auto')};
     transition: all .15s;
     padding: 0;
-    max-height: 100vh;
     margin-left: ${props => (props.expanded ? 140 : ((props.side && 64) || 0))}px;
 `;
 

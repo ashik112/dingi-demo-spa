@@ -28,7 +28,6 @@ class ItemsPage extends Component {
             size="sm"
             bordered
             hover
-            responsive
           >
             <thead>
             <tr>
