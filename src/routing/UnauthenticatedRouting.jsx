@@ -23,7 +23,7 @@ function UnauthenticatedRouting({ component: Component, authReducer, ...rest }) 
       }
       {
         authReducer.token && (
-          <Redirect exact from={historyRoutes.login} to={historyRoutes.dashboard.sales} />
+          <Redirect exact from={historyRoutes.login} to={historyRoutes.dashboard.base} />
         )
       }
     </>

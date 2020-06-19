@@ -1,9 +1,12 @@
 import React from 'react';
+import {Container} from 'react-bootstrap';
 
 const Dashboard = () => (
-  <div>
-    Dashboard
-  </div>
+  <>
+    <Container fluid>
+      Dashboard
+    </Container>
+  </>
 );
 
 export default Dashboard;

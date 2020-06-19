@@ -9,10 +9,11 @@ import Sales from '../containers/Dashboard/Sales';
 import Customers from '../containers/Dashboard/Customers';
 import LoginPage from '../containers/Login/LoginPage';
 import {ToastContainer} from 'react-toastify';
+import Layout from '../containers/Layout';
 
 const wrappedRoutes = () => (
   <>
-    {/*<Layout />*/}
+    <Layout />
     <>
       {/*<AuthenticatedRouting exact path="/dashboard" component={Dashboard}  />*/}
       <Route path={historyRoutes.dashboard.base}>
@@ -30,7 +31,7 @@ const Routers = () => (
     <ToastContainer autoClose={2000} />
     {/* <main> */}
     <Switch>
-      <UnauthenticatedRouting exact path="/" component={LoginPage} />
+      {/*<UnauthenticatedRouting exact path="/" component={LoginPage} />*/}
       <UnauthenticatedRouting path={historyRoutes.login} component={LoginPage} />
       <Route path="/" component={wrappedRoutes} />
       {/*<Route component={NotFound} />*/}

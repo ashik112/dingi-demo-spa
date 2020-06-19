@@ -1,30 +1,33 @@
-import React, {Component} from 'react';
-import { Provider } from 'react-redux';
+import React from 'react';
+import {connect, Provider} from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Router } from 'react-router-dom';
-import Routers from './routing';
+import { Router, Switch } from 'react-router-dom';
 import history from './utils/history';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import UnauthenticatedRouting from './routing/UnauthenticatedRouting';
+import LoginPage from './containers/Login/LoginPage';
+import Layout from './containers/Layout';
 
-class App extends Component {
-  render() {
-    const { store, persistor } = this.props;
-    return (
-      <Provider store={store}>
-        {/* loading can be null */}
-        <PersistGate loading={null} persistor={persistor}>
-          <Router history={history}>
-              <>
-                <div className="App">
-                  <Routers />
-                </div>
-              </>
-          </Router>
-        </PersistGate>
-      </Provider>
-    );
-  }
+const App = ({store, persistor}) => {
+  return (
+    <Provider store={store}>
+      {/* loading can be null */}
+      <PersistGate loading={null} persistor={persistor}>
+        <Router history={history}>
+          <Switch>
+            <UnauthenticatedRouting exact path="/" component={LoginPage} />
+            <UnauthenticatedRouting exact path="/login" component={LoginPage} />
+            <Layout />
+          </Switch>
+        </Router>
+      </PersistGate>
+    </Provider>
+  );
 }
-export default App;
+const mapStateToProps = (state) => ({
+  authReducer: state.authReducer,
+});
+export default  connect(mapStateToProps, null)(App);
