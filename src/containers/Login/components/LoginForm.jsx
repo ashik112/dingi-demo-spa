@@ -4,7 +4,7 @@ import React from 'react';
 import {
   Button, Form, InputGroup, Spinner,
 } from 'react-bootstrap';
-import { Field, Formik } from 'formik';
+import { Field, Formik, Form as ForkmikForm } from 'formik';
 import { Asterisk, BoxArrowRight, PersonFill } from 'react-bootstrap-icons';
 
 const LoginForm = ({ loading, onLogIn }) => (
@@ -18,7 +18,7 @@ const LoginForm = ({ loading, onLogIn }) => (
     }}
   >
     {({ handleSubmit, values }) => (
-      <Form>
+      <Form as={ForkmikForm}>
         <Field
           name="username"
         >
@@ -49,7 +49,7 @@ const LoginForm = ({ loading, onLogIn }) => (
             </Form.Group>
           )}
         </Field>
-        <Button disabled={loading || (!values.username || !values.password)} variant="warning" className="text-light" type="button" onClick={handleSubmit}>
+        <Button disabled={loading || (!values.username || !values.password)} variant="warning" className="text-light" type="submit" onClick={handleSubmit}>
           {
               loading && (
                 <Spinner
