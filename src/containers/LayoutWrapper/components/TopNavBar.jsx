@@ -20,7 +20,7 @@ const TopNavBar = ({
   <Navbar fixed="top" style={{ height: 55, opacity: 0.8 }} bg="warning" variant="light">
     <Navbar.Brand>
       <Image width={20} src={logo} fluid />
-      Dingi
+      &nbsp;Dingi
     </Navbar.Brand>
     <Nav className="mr-auto">
       <Nav.Link onClick={() => !showSideNav && history.push(historyRoutes.dashboard.sales)}>Dashboard</Nav.Link>
