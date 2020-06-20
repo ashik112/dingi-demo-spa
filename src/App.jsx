@@ -3,7 +3,7 @@ import {connect, Provider} from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Router, Switch } from 'react-router-dom';
 import history from './utils/history';
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';

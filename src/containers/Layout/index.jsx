@@ -58,6 +58,7 @@ class Layout extends Component {
               style={{
                 background: '#ffc107',
                 marginTop: 55,
+                position: 'fixed',
               }}
               onSelect={(selected) => {
                 const { location } = this.props;

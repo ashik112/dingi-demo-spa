@@ -4,6 +4,8 @@ import {apiRoutes} from '../../../routing/apiRoutes';
 import {Card, Col, Row} from 'react-bootstrap';
 import { Bar, Pie } from 'react-chartjs-2';
 import moment from 'moment';
+import {getMaterialColor} from '../../../utils/colorGenerator';
+
 class CustomersPage extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +64,7 @@ class CustomersPage extends Component {
         });
         barDatasets.push({
           label: district,
+          backgroundColor: getMaterialColor(),
           data,
         });
       });
@@ -74,6 +77,7 @@ class CustomersPage extends Component {
           labels: Object.keys(workAreas),
           datasets: [{
             data: Object.keys(workAreas).map((key) => Object.keys(workAreas[key]).length),
+            backgroundColor: Object.keys(workAreas).map((key) => getMaterialColor()),
           }],
         }
       })
@@ -84,9 +88,10 @@ class CustomersPage extends Component {
     const { barData, pieData } = this.state;
     return (
       <>
-        <Row>
-          <Col md={12}>
+        <Row className="p-0 m-0">
+          <Col md={6} sm={12} className="p-0 m-0">
             <Card border="warning" className="m-2">
+              <Card.Header>District Wise Customer Statistics / Current Month</Card.Header>
               <Card.Body>
                 <Bar
                   data={barData}
@@ -97,8 +102,9 @@ class CustomersPage extends Component {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col md={6} sm={12} className="p-0 m-0">
             <Card border="warning" className="m-2">
+              <Card.Header>Work Area Wise Customer Comparison</Card.Header>
               <Card.Body>
                 <Pie
                   data={pieData}
