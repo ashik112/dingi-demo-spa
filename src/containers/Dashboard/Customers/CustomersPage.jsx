@@ -82,17 +82,18 @@ class CustomersPage extends Component {
           }],
         }
       })
-    }).catch((e) => e.handleGlobally(e));;
+    }).catch((e) => e.handleGlobally(e));
   }
 
   render() {
     const { barData, pieData } = this.state;
+    const currentMonth = moment().format('MMMM');
     return (
       <>
         <Row className="p-0 m-0">
           <Col md={6} sm={12} className="p-0 m-0">
             <Card border="warning" className="m-2">
-              <Card.Header><BarChartFill /> District Wise Customer Statistics / Current Month</Card.Header>
+              <Card.Header><BarChartFill /> District Wise Customer Statistics / <b>{currentMonth}</b></Card.Header>
               <Card.Body>
                 <Bar
                   data={barData}

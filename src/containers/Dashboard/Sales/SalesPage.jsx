@@ -75,12 +75,13 @@ class SalesPage extends Component {
 
   render() {
     const { barData, pieData } = this.state;
+    const currentMonth = moment().format('MMMM');
     return (
       <>
         <Row className="p-0 m-0">
           <Col md={6} sm={12} className="p-0 m-0">
             <Card border="warning" className="m-2">
-              <Card.Header><BarChartFill /> Product Wise Order Quantity Statistics / Current Month</Card.Header>
+              <Card.Header><BarChartFill /> Product Wise Order Quantity Statistics / <b>{currentMonth}</b></Card.Header>
               <Card.Body>
                 <Bar
                   data={barData}
@@ -93,7 +94,7 @@ class SalesPage extends Component {
           </Col>
           <Col md={6}  sm={12} className="p-0 m-0">
             <Card border="warning" className="m-2">
-              <Card.Header><PieChartFill /> Product Wise Order Quantity Comparison / Current Month</Card.Header>
+              <Card.Header><PieChartFill /> Product Wise Order Quantity Comparison / <b>{currentMonth}</b></Card.Header>
               <Card.Body>
                 <Pie
                   data={pieData}
