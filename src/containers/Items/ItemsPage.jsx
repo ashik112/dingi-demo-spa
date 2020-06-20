@@ -1,26 +1,58 @@
 import React, {Component} from 'react';
 import axios from '../../utils/axios';
 import {apiRoutes} from '../../routing/apiRoutes';
-import {Card, Table} from 'react-bootstrap';
+import {Card, FormControl, Table} from 'react-bootstrap';
 
 class ItemsPage extends Component {
   constructor(props) {
     super(props);
+    this.inputDistrict = React.createRef();
+    this.inputProduct = React.createRef();
     this.state= {
       data: [],
+      districts: {},
+      products: {},
+      selectedProduct: 'All',
+      selectedDistrict: 'All',
     }
   }
 
   componentDidMount() {
     axios.get(apiRoutes.data).then((res) => {
+      const { data } = res;
+      const districts = {};
+      const products = {};
+      data.forEach((item) => {
+        const { district, product } = item;
+        if(!districts[district]) {
+          districts[district] = null;
+        }
+        if(!products[product]) {
+          products[product] = null;
+        }
+      });
       this.setState({
         data: res.data,
+        districts,
+        products,
       });
     })
   }
 
+  handleChange =() => {
+    this.setState({
+      selectedProduct: this.inputProduct.current.value,
+      selectedDistrict: this.inputDistrict.current.value,
+    });
+  }
+
+  filter = (values) => {
+    const {selectedProduct, selectedDistrict} = this.state;
+    return (selectedDistrict === 'All' || values.district.includes(selectedDistrict)) && (selectedProduct === 'All' || values.product.includes(selectedProduct));
+  };
+
   render() {
-    const {data} = this.state;
+    const {data, districts, products} = this.state;
     return (
       <Card className="m-2">
         <>
@@ -33,15 +65,35 @@ class ItemsPage extends Component {
             <thead>
             <tr>
               <th>Date</th>
-              <th>District</th>
+              <th>
+                District
+                <FormControl ref={this.inputDistrict} as="select" onChange={this.handleChange}>
+                  <option>All</option>
+                  {
+                    Object.keys(districts).map((key) => (
+                      <option key={key}>{key}</option>
+                    ))
+                  }
+                </FormControl>
+              </th>
               <th>Name</th>
               <th>Work Area</th>
-              <th>Product</th>
+              <th>
+                Product
+                <FormControl ref={this.inputProduct} as="select" onChange={this.handleChange}>
+                  <option>All</option>
+                  {
+                    Object.keys(products).map((key) => (
+                      <option key={key}>{key}</option>
+                    ))
+                  }
+                </FormControl>
+              </th>
               <th className="text-right">Order Quantity</th>
             </tr>
             </thead>
             <tbody>
-            {data.map((item, index) => {
+            {data.filter(this.filter).map((item, index) => {
               return (
                 <tr key={index}>
                   <td>{item.date}</td>
