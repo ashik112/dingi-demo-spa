@@ -17,7 +17,7 @@ const LoginForm = ({ loading, onLogIn }) => (
       onLogIn({ ...values });
     }}
   >
-    {({ handleSubmit }) => (
+    {({ handleSubmit, values }) => (
       <Form>
         <Field
           name="username"
@@ -49,7 +49,7 @@ const LoginForm = ({ loading, onLogIn }) => (
             </Form.Group>
           )}
         </Field>
-        <Button disabled={loading} variant="warning" className="text-light" type="button" onClick={handleSubmit}>
+        <Button disabled={loading || (!values.username || !values.password)} variant="warning" className="text-light" type="button" onClick={handleSubmit}>
           {
               loading && (
                 <Spinner
