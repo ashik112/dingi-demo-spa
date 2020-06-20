@@ -1,5 +1,6 @@
+/* eslint-disable linebreak-style */
 /**
- * * Routes for history
+ * Routes for history
  */
 const historyRoutes = {
   dashboard: {

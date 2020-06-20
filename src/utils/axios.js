@@ -1,7 +1,8 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-undef,max-len,no-unused-vars */
 import axiosInstance from 'axios';
 import { handleAjaxError } from './errorHandler';
-import { store} from '../redux/store';
+import { store } from '../redux/store';
 /**
  * Create Axios Instance
  * @type {AxiosInstance}
@@ -52,6 +53,5 @@ axios.interceptors.request.use(
 // * declare a response interceptor
 axios.interceptors.response.use((response) => response, // do something with the response data
   (error) => Promise.reject(handleAjaxError(error.response))); // handle the response error
-
 
 export default axios;

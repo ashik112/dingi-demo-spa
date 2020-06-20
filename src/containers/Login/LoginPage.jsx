@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Container,
@@ -23,7 +24,7 @@ const LoginPage = ({ authReducer, onLogIn }) => {
             <Card.Body>
               <div className="text-center mb-5">
                 <Image src={logo} rounded />
-                <br/>
+                <br />
                 <h1 className="text-warning">Dingi</h1>
               </div>
               <LoginForm loading={loading} onLogIn={onLogIn} />

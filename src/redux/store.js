@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-undef,no-underscore-dangle */
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';

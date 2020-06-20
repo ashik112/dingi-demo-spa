@@ -1,7 +1,10 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable react/prop-types */
+/* eslint-disable linebreak-style */
 import React from 'react';
+import SideNav, { NavIcon, NavItem, NavText } from '@trendmicro/react-sidenav';
+import { GraphUp, PeopleFill } from 'react-bootstrap-icons';
 import history from '../../../utils/history';
-import SideNav, {NavIcon, NavItem, NavText} from '@trendmicro/react-sidenav';
-import {GraphUp, PeopleFill} from 'react-bootstrap-icons';
 
 const SideNavBar = ({ onToggle, location }) => (
   <SideNav
@@ -11,7 +14,7 @@ const SideNavBar = ({ onToggle, location }) => (
       position: 'fixed',
     }}
     onSelect={(selected) => {
-      const to = '/' + selected;
+      const to = `/${selected}`;
       if (location.pathname !== to) {
         history.push(to);
       }
@@ -38,6 +41,6 @@ const SideNavBar = ({ onToggle, location }) => (
       </NavItem>
     </SideNav.Nav>
   </SideNav>
-)
+);
 
 export default SideNavBar;

@@ -1,9 +1,9 @@
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import authActionTypes from './authActionTypes';
 import historyRoutes from '../../../routing/historyRoutes';
 import history from '../../../utils/history';
-import axios from 'axios';
-import {apiRoutes} from '../../../routing/apiRoutes';
-import {toast} from 'react-toastify';
+import { apiRoutes } from '../../../routing/apiRoutes';
 
 const login = (credentials) => {
   function start(params) {
@@ -30,8 +30,8 @@ const login = (credentials) => {
       })
       .catch((error) => {
         const message = error.response.data.detail;
-        if(message) {
-          toast.error("Wrong Username / Password!", {
+        if (message) {
+          toast.error('Wrong Username / Password!', {
             position: toast.POSITION.BOTTOM_CENTER,
           });
         }

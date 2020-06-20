@@ -36,7 +36,6 @@ function clear() {
   localStorage.clear();
 }
 
-
 const storageService = {
   get,
   set,
