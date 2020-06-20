@@ -7,11 +7,11 @@ import {
   Col,
   Card,
   Image,
-  Spinner,
+  Spinner, InputGroup,
 } from 'react-bootstrap';
 import { Formik, Field } from 'formik';
 import { connect } from 'react-redux';
-import { BoxArrowRight } from 'react-bootstrap-icons';
+import { BoxArrowRight, Asterisk, PersonFill } from 'react-bootstrap-icons';
 import logo from '../../assets/dingi.png';
 import './LoginPage.scss';
 import authActions from '../../redux/reducers/Authentication/authActions';
@@ -44,22 +44,34 @@ const LoginPage = ({ authReducer, onLogIn }) => {
                     <Form>
                       <Field
                         name="username"
-                        render={({field, formProps}) => (
+                      >
+                        {({field, form, meta}) => (
                           <Form.Group controlId="username">
                             <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your username" value={field.value} onChange={field.onChange} />
+                            <InputGroup className="mb-2">
+                              <InputGroup.Prepend>
+                                <InputGroup.Text className="text-warning"><PersonFill /></InputGroup.Text>
+                              </InputGroup.Prepend>
+                              <Form.Control type="text" placeholder="Enter your username" value={field.value} onChange={field.onChange} />
+                            </InputGroup>
                           </Form.Group>
                         )}
-                      />
+                      </Field>
                       <Field
                         name="password"
-                        render={({field, formProps}) => (
+                      >
+                        {({field, form, meta}) => (
                           <Form.Group controlId="password">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Enter your password" value={field.value} onChange={field.onChange} />
+                            <InputGroup className="mb-2">
+                              <InputGroup.Prepend>
+                                <InputGroup.Text className="text-warning"><Asterisk /></InputGroup.Text>
+                              </InputGroup.Prepend>
+                              <Form.Control autoComplete="on" type="password" placeholder="Enter your password" value={field.value} onChange={field.onChange} />
+                            </InputGroup>
                           </Form.Group>
                         )}
-                      />
+                      </Field>
                       <Button disabled={loading} variant="warning" className="text-light" type="button" onClick={handleSubmit}>
                         {
                           loading && (

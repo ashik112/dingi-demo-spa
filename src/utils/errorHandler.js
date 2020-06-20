@@ -8,7 +8,6 @@ import {toast} from 'react-toastify';
 export const errorType = {
   single: 1,
   authentication: 2,
-  form: 3,
   unknown: 4,
 };
 
@@ -35,25 +34,30 @@ const handleGlobally = (error) => {
       }
       break;
     case errorType.unknown:
-      // showNotification('error', error.statusText, error.message);
+      toast.error(error.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       break;
     case errorType.single:
-      // showAlert('error', error.message);
+      toast.error(error.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       break;
     default:
-      // showNotification('error', 'Something went wrong!', 'Server was unable to process the request.');
+      toast.error('Server was unable to process the request!', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       break;
   }
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const handleAjaxError = (error) => {
   try {
-    const { status, data: { code, message } } = error;
-    if (status === 401 || code === 401) {
+    const { status, data: { details } } = error;
+    if (status === 401) {
       const res = {
         message: 'Authentication Required',
-        statusText: message,
+        statusText: details,
         code: 401,
         type: errorType.authentication,
         handleGlobally: (err) => handleGlobally(err),
@@ -65,29 +69,11 @@ export const handleAjaxError = (error) => {
     // handle error
   }
   try {
-    if (error.data.errors.children) {
-      const formErrors = {};
-      // eslint-disable-next-line no-restricted-syntax,no-unused-vars
-      for (const [key, value] of Object.entries(error.data.errors.children)) {
-        value.errors.forEach((err) => {
-          if (formErrors[key]) {
-            formErrors[key].push(err);
-          } else {
-            formErrors[key] = [];
-            formErrors[key].push(err);
-          }
-        });
-      }
-      return {
-        type: errorType.form,
-        errors: formErrors,
-        handleGlobally: (err) => handleGlobally(err),
-      };
-    } if (error && error.data && error.data.message) {
+    if (error && error.data && error.data.detail) {
       return {
         type: errorType.single,
         statusText: error.statusText,
-        message: error.data.message,
+        message: error.data.detail,
         handleGlobally: (err) => handleGlobally(err),
       };
     }
@@ -97,11 +83,11 @@ export const handleAjaxError = (error) => {
       message: 'Server was unable to process the request.',
     };
   } catch (e) {
-    if (error && error.data && error.data.message) {
+    if (error && error.data && error.data.detail) {
       return {
         type: errorType.single,
         statusText: error.statusText,
-        message: error.data.message,
+        message: error.data.detail,
         handleGlobally: (err) => handleGlobally(err),
       };
     }

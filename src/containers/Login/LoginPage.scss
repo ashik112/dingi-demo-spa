@@ -4,7 +4,7 @@
   right: 0;
   z-index: 1;
   display: block;
-  background: linear-gradient(-45deg, rgba(226, 178, 127, 0.51), rgba(243, 122, 32, 0.73));
+  background: linear-gradient(-45deg, rgba(255, 193, 7, 0.51), rgba(243, 122, 32, 0.73));
   width: 100vw;
   height: 100vh;
   -webkit-filter: blur(3px);
@@ -15,6 +15,7 @@
 }
 
 .content {
+  opacity: 0.9;
   position: fixed;
   left: 0;
   right: 0;

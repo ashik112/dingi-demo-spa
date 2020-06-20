@@ -4,6 +4,7 @@ import {apiRoutes} from '../../../routing/apiRoutes';
 import {Card, Col, Row} from 'react-bootstrap';
 import { Bar, Pie } from 'react-chartjs-2';
 import moment from 'moment';
+import { PieChartFill, BarChartFill } from 'react-bootstrap-icons';
 import {getMaterialColor} from '../../../utils/colorGenerator';
 
 class CustomersPage extends Component {
@@ -81,7 +82,7 @@ class CustomersPage extends Component {
           }],
         }
       })
-    });
+    }).catch((e) => e.handleGlobally(e));;
   }
 
   render() {
@@ -91,7 +92,7 @@ class CustomersPage extends Component {
         <Row className="p-0 m-0">
           <Col md={6} sm={12} className="p-0 m-0">
             <Card border="warning" className="m-2">
-              <Card.Header>District Wise Customer Statistics / Current Month</Card.Header>
+              <Card.Header><BarChartFill /> District Wise Customer Statistics / Current Month</Card.Header>
               <Card.Body>
                 <Bar
                   data={barData}
@@ -104,7 +105,7 @@ class CustomersPage extends Component {
           </Col>
           <Col md={6} sm={12} className="p-0 m-0">
             <Card border="warning" className="m-2">
-              <Card.Header>Work Area Wise Customer Comparison</Card.Header>
+              <Card.Header><PieChartFill /> Work Area Wise Customer Comparison</Card.Header>
               <Card.Body>
                 <Pie
                   data={pieData}

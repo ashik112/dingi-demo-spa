@@ -36,7 +36,7 @@ class ItemsPage extends Component {
         districts,
         products,
       });
-    })
+    }).catch((e) => e.handleGlobally(e));
   }
 
   handleChange =() => {
