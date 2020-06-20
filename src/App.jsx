@@ -9,19 +9,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import UnauthenticatedRouting from './routing/UnauthenticatedRouting';
 import LoginPage from './containers/Login/LoginPage';
-import Layout from './containers/Layout';
+import LayoutWrapper from './containers/LayoutWrapper';
 import {ToastContainer} from 'react-toastify';
 
 const App = ({store, persistor}) => {
   return (
     <Provider store={store}>
-      {/* loading can be null */}
       <PersistGate loading={null} persistor={persistor}>
         <Router history={history}>
           <Switch>
             <UnauthenticatedRouting exact path="/" component={LoginPage} />
             <UnauthenticatedRouting exact path="/login" component={LoginPage} />
-            <Layout />
+            <LayoutWrapper />
           </Switch>
         </Router>
       </PersistGate>

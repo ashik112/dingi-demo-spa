@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Switch } from 'react-router-dom';
-import {Navbar, Nav, Button, Form, Image} from 'react-bootstrap';
+import {
+  Navbar,
+  Nav,
+  Form,
+  Image,
+  Dropdown,
+  DropdownButton,
+} from 'react-bootstrap';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import authActions from '../../redux/reducers/Authentication/authActions';
 import AuthenticatedRouting from '../../routing/AuthenticatedRouting';
@@ -12,7 +19,8 @@ import { GraphUp, PeopleFill } from 'react-bootstrap-icons';
 import ItemsPage from '../Items/ItemsPage';
 import historyRoutes from '../../routing/historyRoutes';
 import SalesPage from '../Dashboard/Sales/SalesPage';
-import CustomersPage from '../Dashboard/Customers/CustomersPage';
+import CustomersPage from '../Dashboard/Customers/CustomersPage'
+import {BoxArrowLeft, PersonBoundingBox} from 'react-bootstrap-icons';
 
 const Main = styled.main`
     position: relative;
@@ -24,7 +32,7 @@ const Main = styled.main`
     margin-top: 55px;
 `;
 
-class Layout extends Component {
+class LayoutWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +45,7 @@ class Layout extends Component {
   };
 
   render() {
-    const { logOut, location } = this.props;
+    const { logOut, location, authReducer: { user: { username, full_name } } } = this.props;
     const showSideNav = location.pathname.includes('dashboard') || location.pathname.includes('sales') || location.pathname.includes('customers');
     const { expanded } = this.state;
     return(
@@ -49,7 +57,19 @@ class Layout extends Component {
             <Nav.Link onClick={() => history.push(historyRoutes.items)}>Items</Nav.Link>
           </Nav>
           <Form inline>
-            <Button onClick={logOut} variant="info">Log Out</Button>
+            <>
+              <DropdownButton
+                alignRight
+                variant="warning"
+                title={<span><PersonBoundingBox />&nbsp;&nbsp;<span>{full_name}</span></span>}
+              >
+                <Dropdown.Header>Signed in as <span className="text-danger font-weight-bold">{username}</span></Dropdown.Header>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={logOut} className="text-danger">
+                  <BoxArrowLeft />&nbsp;&nbsp;Log Out
+                </Dropdown.Item>
+              </DropdownButton>
+            </>
           </Form>
         </Navbar>
         {
@@ -106,9 +126,14 @@ class Layout extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  authReducer: state.authReducer,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   logOut: () => dispatch(
     authActions.logout(),
   ),
 });
-export default connect(null, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(LayoutWrapper);

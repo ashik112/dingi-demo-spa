@@ -11,6 +11,7 @@ import {
 } from 'react-bootstrap';
 import { Formik, Field } from 'formik';
 import { connect } from 'react-redux';
+import { BoxArrowRight } from 'react-bootstrap-icons';
 import logo from '../../assets/dingi.png';
 import './LoginPage.scss';
 import authActions from '../../redux/reducers/Authentication/authActions';
@@ -71,7 +72,7 @@ const LoginPage = ({ authReducer, onLogIn }) => {
                             />
                           )
                         }
-                        Log In
+                        { !loading && <BoxArrowRight />}&nbsp;&nbsp;Log In
                       </Button>
                     </Form>
                   );

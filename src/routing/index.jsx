@@ -9,7 +9,7 @@ import Sales from '../containers/Dashboard/Sales/SalesPage';
 import Customers from '../containers/Dashboard/Customers/CustomersPage';
 import LoginPage from '../containers/Login/LoginPage';
 import {ToastContainer} from 'react-toastify';
-import Layout from '../containers/Layout';
+import Layout from '../containers/Layout/LayoutWrapper';
 
 const wrappedRoutes = () => (
   <>
